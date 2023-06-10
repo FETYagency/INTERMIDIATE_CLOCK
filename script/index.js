@@ -3,40 +3,49 @@ const HOURS =  document.querySelector(".HOURS")
 const MINUTES =  document.querySelector(".MINUTES")
 const SECONDS =  document.querySelector(".SECONDS")
 
-SECONDS.textContent = (new Date).getSeconds();
-MINUTES.textContent = (new Date).getMinutes();
-HOURS.textContent = (new Date).getHours();
-DAYS.textContent= (new Date).getDay();
+SECONDS.textContent = (new Date()).getSeconds();
+MINUTES.textContent = (new Date()).getMinutes();
+HOURS.textContent = (new Date()).getHours();
+DAYS.textContent= (new Date()).getDay();
+
+
+// Convert the duration to seconds
+let durationInSeconds = (( (new Date()).getDay() ) * 24 * 60 * 60) + (( (new Date()).getHours() ) * 60 * 60) + (( (new Date()).getMinutes() ) * 60) + ( (new Date()).getSeconds() );
+console.log(durationInSeconds)
+
 
 function showTime() {
-    const now = new Date()
-    let seconds = now.getSeconds();
-    SECONDS.textContent = seconds;
+
+    let day = Math.floor(durationInSeconds / (24 * 60 * 60));
+    DAYS.textContent=day
     
-    let mins = now.getMinutes();
-    const min__folder = MINUTES.nextElementSibling;
+    let hours = Math.floor((durationInSeconds % (24 * 60 * 60)) / (60 * 60));
+    HOURS.textContent = hours;
+    
+    let minutes = Math.floor((durationInSeconds % (60 * 60)) / 60);
+        const min__folder = MINUTES.nextElementSibling;
+        const currentState_min = min__folder.getAttribute("data-state")
 
-    const currentState_min = min__folder.getAttribute("data-state")
+        if(MINUTES.textContent != minutes){
 
-    if(MINUTES.textContent != mins){
+            if (currentState_min === "up") {
 
-        if (currentState_min === "up") {
+                min__folder.setAttribute("data-state", "down");
 
-            min__folder.setAttribute("data-state", "down");
-            
-            setTimeout(()=>{
-                min__folder.setAttribute("data-state", "up");
-            },500)
+                setTimeout(()=>{
+                    min__folder.setAttribute("data-state", "up");
+                },500)
 
+            }
+
+            MINUTES.textContent = minutes;
         }
-        MINUTES.textContent = mins
-    }
+
+    let seconds = Math.floor(durationInSeconds % 60);
+    SECONDS.textContent= seconds
+
+    durationInSeconds--
     
-    let hour = now.getHours();
-    HOURS.textContent = hour;
-    
-    let days = now.getDay();
-    DAYS.textContent= days;
 }
 
 setInterval(showTime, 1000);
@@ -53,8 +62,6 @@ function folders(){
 
     const min__folder = MINUTES.nextElementSibling;
     const currentState_min = min__folder.getAttribute("data-state")
-    
-    
 }
 
 setInterval( folders, 500)
