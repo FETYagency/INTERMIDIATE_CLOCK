@@ -1,0 +1,247 @@
+@import url(reset.css);
+@import url(vars.css);
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap');
+:root{
+    --FF: 'Red Hat Text', sans-serif;
+    font-size: 15px;
+}
+
+
+body{
+    min-block-size: 100vh;
+    font-family: var(--FF);
+    text-align: center;
+    color: var(--White);
+    text-transform: uppercase;
+
+    background: url(../images/pattern-hills.svg) no-repeat left bottom, url(../images/bg-stars.svg), #1D1E28;
+    background-size: 100% auto, 200%;
+
+    animation: stars 10s ease 0s infinite alternate forwards;
+}
+
+@keyframes stars {
+    0%{
+        background-position: 0% 150%, 0% 0%;
+    }50%{
+        background-position: left bottom, 50% 100%;
+
+    }100%{
+        background-position: left bottom, 100% 50%;
+    }
+}
+
+
+
+.wrapper{
+    block-size: 100%;
+    padding-block-start: 8.8rem;
+    
+
+    /* flex box */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6.93rem;
+}
+
+h1{
+    font-size: 22px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 7.5px;
+    text-transform: uppercase;
+}
+
+
+.clock{
+
+    /* flex box */
+    display: flex;
+    gap: 2.13rem;
+}
+
+
+.subLayer{
+    background: var(--Very-dark-mostly_black_blue);
+    border-radius: 8px;
+    color: var(--Soft-red);
+    inline-size: 148px;
+    block-size: 150px;
+}
+
+.displayer{
+    position: relative;
+    overflow: hidden;
+    background-color:var(--Dark-desaturated_blue) ;
+    border-radius: inherit;
+    padding-block: 2.26rem;
+    padding-inline: 1.66rem;
+    font-size: 80px;
+    line-height: 71px;
+    text-align: center;
+    letter-spacing: -2.4px;;
+}
+
+.displayer::after{
+    content: "";
+    position: absolute;
+    inset-block: auto 45.7%;
+    inset-inline: auto -6px;
+    background-color: #000000;
+    inline-size: 12px;
+    block-size: 12px;
+    border-radius: 50%;
+    z-index: 2;
+}
+.displayer::before{
+    content: "";
+    position: absolute;
+    inset-block: auto 45.7%;
+    inset-inline: -6px auto;
+    background-color: #000000;
+    inline-size: 12px;
+    block-size: 12px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.blocks_container{
+    display: flex;
+    flex-flow: column;
+    gap: 1.09rem;
+}
+.sub_folder,
+.folder{
+    position: absolute;
+    inset-inline: 0;
+    inset-block: 0 auto;
+    block-size: 50%;
+    background: hsl(0, 0%, 0%,.15);
+    z-index: 1;
+    transform-origin: bottom;
+    transform: rotateX(0deg);
+    border-block-end: solid rgba(0, 0, 0, 0.345) 1px;
+}
+.folder[data-state = "up"]{
+    transform: rotateX(0deg);
+}
+.folder[data-state = "up"]+.sub_folder{
+    opacity: 0;
+}
+.folder[data-state = "down"]+.sub_folder{
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+.folder[data-state = "down"]{
+    transform: rotateX(180deg);
+    opacity: 0;
+    transition: transform .5s ease, opacity 1s ease;
+}
+
+
+h2{
+    font-size: 0.93rem;
+    line-height: 1.26rem;
+    letter-spacing: 5.91875px;
+}
+
+
+
+
+.media_list{
+    margin-block-start: calc(16.8rem - 6.93rem);
+    
+    /* flex box */
+    display: flex;
+    gap: 2.13rem;
+}   
+
+
+@media (width<700px) {
+    
+    body{
+        background-size: auto 168px, 200%;
+
+        animation: stars 10s ease 0s infinite alternate forwards;
+    }
+
+    
+    .wrapper{
+        padding-block-start: 9.46rem;
+        /* flex box */
+        gap: 3.6rem;
+    }
+
+    .media_list{
+        margin-block-start: calc(17.26rem - 3.6rem);
+        
+        /* flex box */
+        display: flex;
+        gap: 2.13rem;
+    } 
+
+    h1{
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 6.13636px;
+        max-inline-size: min(327px, 100%);
+    }
+    
+    .clock{
+
+        /* flex box */
+        display: flex;
+        gap: 1.09rem;
+    }
+    
+    .subLayer{
+        inline-size: 70px;
+        block-size: 71px;
+    }
+    
+    .displayer{
+        padding-block: 0rem;
+        padding-inline: 1rem;
+        font-size: 36px;
+        line-height: 71px;
+        letter-spacing: -1.08px;
+        block-size: 66.27px;
+    }
+
+    .displayer::after{
+        content: "";
+        position: absolute;
+        inset-block: auto calc(50% - 4.4%);
+        inset-inline: auto -3px;
+        background-color: #000000;
+        inline-size: 6px;
+        block-size: 6px;
+        border-radius: 50%;
+        z-index: 2;
+    }
+    .displayer::before{
+        content: "";
+        position: absolute;
+        inset-block: auto calc(50% - 4.4%);
+        inset-inline: -3px auto;
+        background-color: #000000;
+        inline-size: 6px;
+        block-size: 6px;
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    .blocks_container{
+        display: flex;
+        flex-flow: column;
+        gap: 1.09rem;
+    }
+    
+    h2{
+        font-size: 7px;
+        line-height: 9px;
+        letter-spacing: 2.95937px;
+    }
+}

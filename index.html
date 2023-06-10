@@ -5,27 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="styles/index.css">
   <title>Frontend Mentor | Launch countdown timer</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
 
-  We're launching soon
+  <main class="wrapper">
 
-  Days
-  Hours
-  Minutes
-  Seconds
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+
+    <h1 class="clock_header">
+      We’re launching soon
+    </h1>
+
+    
+    <section class="clock">
+
+      <div class="blocks_container">
+        <!-- the layer that gives the dynamic deeper view(shadow) -->
+        <div class="subLayer">
+          <!-- the interface that shows time -->
+          <div class="displayer">
+            <span style="display: inline-block;" class="bold-number DAYS">00</span>
+            <div class="folder" data-state="up"></div>
+            <div class="sub_folder" data-state="up"></div>
+          </div>
+        </div>
+
+        <!-- label -->
+        <h2>DAYS</h2>
+      
+      </div>
+
+
+
+      <div class="blocks_container">
+        <!-- the layer that gives the dynamic deeper view(shadow) -->
+        <div class="subLayer">
+          <!-- the interface that shows time -->
+          <div class="displayer">
+            <span style="display: inline-block;" class="bold-number HOURS">00</span>
+            <div class="folder" data-state="up"></div>
+          </div>
+        </div>
+
+        <!-- label -->
+        <h2>HOURS</h2>
+      
+      </div>
+
+
+
+      <div class="blocks_container">
+        <!-- the layer that gives the dynamic deeper view(shadow) -->
+        <div class="subLayer">
+          <!-- the interface that shows time -->
+          <div class="displayer">
+            <span style="display: inline-block;" class="bold-number MINUTES">00</span>
+            <div class="folder " data-state="up"></div>
+            <div class="sub_folder" data-state="up"></div>
+          </div>
+        </div>
+
+        <!-- label -->
+        <h2>MINUTES</h2>
+      
+      </div>
+
+
+
+      <div class="blocks_container">
+        <!-- the layer that gives the dynamic deeper view(shadow) -->
+        <div class="subLayer">
+          <!-- the interface that shows time -->
+          <div class="displayer">
+            <span style="display: inline-block;" class="bold-number SECONDS">00</span>
+            <div class="folder " data-state="up"></div>
+            <div class="sub_folder" data-state="up"></div>
+          </div>
+        </div>
+
+        <!-- label -->
+        <h2>SECONDS</h2>
+      
+      </div>
+      
+      
+    </section>
+
+
+
+    
+      <ul class="media_list">
+        <li>
+          <a href="#">
+            <img src="images/icon-facebook.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="images/icon-pinterest.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="images/icon-instagram.svg" alt="">
+          </a>
+        </li>
+      </ul>
+      
+    
+  </main>
+<script src="script/index.js"></script>
 </body>
 </html>
