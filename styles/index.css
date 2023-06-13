@@ -76,12 +76,20 @@ h1{
     overflow: hidden;
     background-color:var(--Dark-desaturated_blue) ;
     border-radius: inherit;
-    padding-block: 2.26rem;
-    padding-inline: 1.66rem;
+    block-size: 140px;
+    display: grid;
+    place-items: center;
+
     font-size: 80px;
     line-height: 71px;
-    text-align: center;
     letter-spacing: -2.4px;;
+}
+.overlay{
+    position: absolute;
+    inset-block: 0 auto;
+    inset-inline: 0;
+    block-size: 50%;
+    background-color: #00000036;
 }
 
 .displayer::after{
@@ -112,33 +120,67 @@ h1{
     flex-flow: column;
     gap: 1.09rem;
 }
-.sub_folder,
 .folder{
+    perspective: 1000px;
+
+
+
     position: absolute;
-    inset-inline: 0;
-    inset-block: 0 auto;
-    block-size: 50%;
-    background: hsl(0, 0%, 0%,.15);
-    z-index: 1;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+}
+.flip{
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
     transform-origin: bottom;
+    block-size: 50%;
+    border-block-end: 1px solid rgba(0, 0, 0, 0.155);
+}
+
+.flip.up{
     transform: rotateX(0deg);
-    border-block-end: solid rgba(0, 0, 0, 0.345) 1px;
 }
-.folder[data-state = "up"]{
-    transform: rotateX(0deg);
+.flip.down{
+    transform: rotateX(-180deg);
+    transition: all 1s ease;
 }
-.folder[data-state = "up"]+.sub_folder{
-    opacity: 0;
+
+.flip>*{
+    position: absolute;
+    inset: 0;
 }
-.folder[data-state = "down"]+.sub_folder{
-    opacity: 1;
-    transition: opacity .1s ease;
+.flip.up>*{
+    backface-visibility: hidden;
 }
-.folder[data-state = "down"]{
+.flip.down>*{
+    backface-visibility: visible;
+}
+.flip>*>span{
+    position: absolute;
+    block-size: 200%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inset-block: 0 auto;
+    inset-inline: 0;
+
+}
+.back{
     transform: rotateX(180deg);
-    opacity: 0;
-    transition: transform .5s ease, opacity 1s ease;
+    background: var(--Dark-desaturated_blue);
 }
+.back>span{
+    align-items: start;
+    inset-block: -50% auto;
+}
+.front{
+    background: var(--Dark-desaturated_blue);
+}
+
 
 
 h2{

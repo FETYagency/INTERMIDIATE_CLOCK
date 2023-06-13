@@ -1,67 +1,96 @@
-const DAYS =  document.querySelector(".DAYS")
-const HOURS =  document.querySelector(".HOURS")
-const MINUTES =  document.querySelector(".MINUTES")
-const SECONDS =  document.querySelector(".SECONDS")
+const secondsCard = document.querySelector(".SECONDS")
+const secondsCardFront = document.querySelector(".SECONDS_front")
+const secondsCardBack = document.querySelector(".SECONDS_back")
 
-SECONDS.textContent = (new Date()).getSeconds();
-MINUTES.textContent = (new Date()).getMinutes();
-HOURS.textContent = (new Date()).getHours();
-DAYS.textContent= (new Date()).getDay();
+const minutesCard = document.querySelector(".MINUTES")
+const minutesCardFront = document.querySelector(".MINUTES_front")
+const minutesCardBack = document.querySelector(".MINUTES_back")
+
+const flipMin = document.querySelector(".flip.min")
+
+const hoursCard = document.querySelector(".HOURS"); 
+const hoursCardFront = document.querySelector(".HOURS_front")
+const hoursCardBack = document.querySelector(".HOURS_back")
+
+const daysCard = document.querySelector(".DAYS") 
+const daysCardFront = document.querySelector(".DAYS_front")
+const daysCardBack = document.querySelector(".DAYS_back")
 
 
-// Convert the duration to seconds
-let durationInSeconds = (( (new Date()).getDay() ) * 24 * 60 * 60) + (( (new Date()).getHours() ) * 60 * 60) + (( (new Date()).getMinutes() ) * 60) + ( (new Date()).getSeconds() );
-console.log(durationInSeconds)
+
+let currentDate = new Date();
+
+let currentDay = currentDate.getDay()+1;
+let currentHour = currentDate.getHours();
+let currentMins = currentDate.getMinutes();
+let currentSec = currentDate.getSeconds();
+
+minutesCard.textContent = currentMins
+minutesCardFront.textContent = currentMins;
+minutesCardBack.textContent = currentMins
+
+hoursCard.textContent = currentHour
+hoursCardFront.textContent = currentHour;
+hoursCardBack.textContent = currentHour;
+
+daysCard.textContent = currentDay
+daysCardFront.textContent = currentDay;
+daysCardBack.textContent = currentDay;
+
+let timeInSeconds = (currentDay * 24 * 60 * 60)+(currentHour * 60 * 60)+(currentMins * 60)+currentSec;
 
 
-function showTime() {
 
-    let day = Math.floor(durationInSeconds / (24 * 60 * 60));
-    DAYS.textContent=day
+
+
+function showTime(){
     
-    let hours = Math.floor((durationInSeconds % (24 * 60 * 60)) / (60 * 60));
-    HOURS.textContent = hours;
+    let day = Math.floor(timeInSeconds / (24 * 60 * 60));
+    let hours = Math.floor((timeInSeconds % (24 * 60 * 60)) / (60 * 60));
+    let minutes = Math.floor((timeInSeconds % (60 * 60)) / 60);
+    let seconds = Math.floor(timeInSeconds % 60);
     
-    let minutes = Math.floor((durationInSeconds % (60 * 60)) / 60);
-        const min__folder = MINUTES.nextElementSibling;
-        const currentState_min = min__folder.getAttribute("data-state")
+    secondsCard.textContent = seconds;
+    secondsCardFront.textContent = seconds
+    secondsCardBack.textContent = seconds
 
-        if(MINUTES.textContent != minutes){
 
-            if (currentState_min === "up") {
+    if(minutesCard.textContent != minutes){
+        minutesCard.textContent = minutes
+        minutesCardFront.textContent = minutes;
+        minutesCardBack.textContent = minutes
 
-                min__folder.setAttribute("data-state", "down");
-
-                setTimeout(()=>{
-                    min__folder.setAttribute("data-state", "up");
-                },500)
-
-            }
-
-            MINUTES.textContent = minutes;
+        if(flipMin.classList.contains("up")){
+            flipMin.setAttribute("class","flip min down")
+        }else{
+            flipMin.setAttribute("class", "flip min up")
         }
-
-    let seconds = Math.floor(durationInSeconds % 60);
-    SECONDS.textContent= seconds
-
-    durationInSeconds--
-    
-}
-
-setInterval(showTime, 1000);
-
-
-function folders(){
-    const sec_folder= SECONDS.nextElementSibling
-    const currentState_sec = sec_folder.getAttribute("data-state");
-    if (currentState_sec === "down") {
-        sec_folder.setAttribute("data-state", "up");
-    } else {
-        sec_folder.setAttribute("data-state", "down");
     }
 
-    const min__folder = MINUTES.nextElementSibling;
-    const currentState_min = min__folder.getAttribute("data-state")
-}
 
-setInterval( folders, 500)
+    hoursCard.textContent=hours
+    hoursCardFront.textContent = hours;
+    hoursCardBack.textContent = hours
+
+    
+    daysCard.textContent= day
+    daysCardFront.textContent = day;
+    daysCardBack.textContent = day;
+    
+    timeInSeconds--
+}
+setInterval(showTime, 1000)
+
+
+const flipSec = document.querySelector(".flip.sec")
+
+
+
+function secondsTicTac(){
+    if(flipSec.classList.contains("up")){
+        flipSec.setAttribute("class","flip down")
+    }else{
+        flipSec.setAttribute("class", "flip up")
+    }
+}
+setInterval(secondsTicTac, 500)
