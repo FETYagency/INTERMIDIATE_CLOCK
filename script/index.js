@@ -93,4 +93,4 @@ function secondsTicTac(){
         flipSec.setAttribute("class", "flip up")
     }
 }
-setInterval(secondsTicTac, 500)
+setInterval(secondsTicTac, 600)
