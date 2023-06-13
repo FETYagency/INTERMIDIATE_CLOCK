@@ -25,6 +25,10 @@ let currentHour = currentDate.getHours();
 let currentMins = currentDate.getMinutes();
 let currentSec = currentDate.getSeconds();
 
+secondsCard.textContent = currentSec;
+secondsCardFront.textContent = currentSec
+secondsCardBack.textContent = currentSec
+
 minutesCard.textContent = currentMins
 minutesCardFront.textContent = currentMins;
 minutesCardBack.textContent = currentMins
@@ -39,6 +43,7 @@ daysCardBack.textContent = currentDay;
 
 let timeInSeconds = (currentDay * 24 * 60 * 60)+(currentHour * 60 * 60)+(currentMins * 60)+currentSec;
 
+const flipSec = document.querySelector(".flip.sec")
 
 
 
@@ -49,10 +54,21 @@ function showTime(){
     let hours = Math.floor((timeInSeconds % (24 * 60 * 60)) / (60 * 60));
     let minutes = Math.floor((timeInSeconds % (60 * 60)) / 60);
     let seconds = Math.floor(timeInSeconds % 60);
+
+
+    if (secondsCard.textContent != seconds) {
+
+        secondsCard.textContent = seconds;
+        secondsCardFront.textContent = seconds
+        secondsCardBack.textContent = seconds
+
+        flipSec.setAttribute("class","flip min down")
+        setTimeout(()=>{
+            flipSec.setAttribute("class", "flip min up")
+        },700)
     
-    secondsCard.textContent = seconds;
-    secondsCardFront.textContent = seconds
-    secondsCardBack.textContent = seconds
+    }
+    
 
 
     if(minutesCard.textContent != minutes){
@@ -81,16 +97,3 @@ function showTime(){
 }
 setInterval(showTime, 1000)
 
-
-const flipSec = document.querySelector(".flip.sec")
-
-
-
-function secondsTicTac(){
-    if(flipSec.classList.contains("up")){
-        flipSec.setAttribute("class","flip down")
-    }else{
-        flipSec.setAttribute("class", "flip up")
-    }
-}
-setInterval(secondsTicTac, 600)

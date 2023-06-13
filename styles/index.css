@@ -77,6 +77,8 @@ h1{
     background-color:var(--Dark-desaturated_blue) ;
     border-radius: inherit;
     block-size: 140px;
+
+
     display: grid;
     place-items: center;
 
@@ -123,21 +125,20 @@ h1{
 .folder{
     perspective: 1000px;
 
-
-
     position: absolute;
     inset: 0;
-
-    display: grid;
-    place-items: center;
 }
 .flip{
     overflow: hidden;
+
     position: absolute;
-    inset: 0;
+    inset-inline: 0;
+
     transform-style: preserve-3d;
     transform-origin: bottom;
+
     block-size: 50%;
+
     border-block-end: 1px solid rgba(0, 0, 0, 0.155);
 }
 
@@ -146,7 +147,8 @@ h1{
 }
 .flip.down{
     transform: rotateX(-180deg);
-    transition: all 1s ease;
+    opacity: 0;
+    transition: all 1s ease, opacity 1.5s ease-out;
 }
 
 .flip>*{
@@ -159,9 +161,11 @@ h1{
 .flip.down>*{
     backface-visibility: visible;
 }
+
+
 .flip>*>span{
     position: absolute;
-    block-size: 200%;
+    block-size: 140px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -205,8 +209,6 @@ h2{
     
     body{
         background-size: auto 168px, 200%;
-
-        animation: stars 10s ease 0s infinite alternate forwards;
     }
 
     
@@ -245,8 +247,10 @@ h2{
     
     .displayer{
         padding-block: 0rem;
-        padding-inline: 1rem;
+        padding-inline: 0rem;
+
         font-size: 36px;
+        
         line-height: 71px;
         letter-spacing: -1.08px;
         block-size: 66.27px;
@@ -286,4 +290,21 @@ h2{
         line-height: 9px;
         letter-spacing: 2.95937px;
     }
+
+    .bold-number{
+        block-size: 66.27px;
+        
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .flip>*>span{
+        block-size: 66.27px;
+    }
+    .back>span{
+        align-items: start;
+        inset-block: -109% auto;
+    }
+    
 }
